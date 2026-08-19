@@ -13,7 +13,7 @@ export class ZarvisDB extends Dexie {
   settings!: Table<ZarvisSettings, string>;
 
   constructor() {
-    super('zarvis');
+    super('kanha');
     this.version(1).stores({
       conversations: 'id, updatedAt, archived',
       profile: 'id',
