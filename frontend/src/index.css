@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .glass-panel {
+    @apply bg-z-glass backdrop-blur-xl border border-z-border;
+  }
+  .glow-border {
+    @apply border border-z-primary/30 shadow-z-glow-sm;
+  }
+}
