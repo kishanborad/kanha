@@ -23,9 +23,10 @@ export const useConversationStore = create<ConversationState>((set, get) => ({
 
   load: async () => {
     const all = await db.conversations
-      .where('archived').equals(0)
+      .orderBy('updatedAt')
       .reverse()
-      .sortBy('updatedAt');
+      .filter(c => !c.archived)
+      .toArray();
     set({ conversations: all, loaded: true });
   },
 
