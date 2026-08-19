@@ -1,9 +1,10 @@
 // frontend/src/App.tsx
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useSettingsStore } from './stores/settingsStore';
 import { useMemoryStore } from './stores/memoryStore';
 import BootSequence from './components/desktop/BootSequence';
 import Desktop from './components/desktop/Desktop';
+import WindowManager from './components/window/WindowManager';
 
 export default function App() {
   const { settings, loaded, load, markBooted } = useSettingsStore();
@@ -20,6 +21,8 @@ export default function App() {
     setBooting(false);
   }, [markBooted]);
 
+  const registry = useMemo(() => new Map(), []);
+
   if (!loaded) return null;
 
   // Skip boot if already booted this session
@@ -29,8 +32,7 @@ export default function App() {
     <>
       {showBoot && <BootSequence onComplete={handleBootComplete} />}
       <Desktop apps={[]}>
-        {/* WindowManager will go here in Task 4 */}
-        <div />
+        <WindowManager registry={registry} />
       </Desktop>
     </>
   );
