@@ -32,7 +32,7 @@ export default function AssistantApp() {
   const handleSend = useCallback(async (text: string) => {
     if (!provider) return;
 
-    let conversationId = activeId;
+    let conversationId = useConversationStore.getState().activeId;
     if (!conversationId) {
       conversationId = await create(text.slice(0, 50));
     }
@@ -110,7 +110,7 @@ export default function AssistantApp() {
 
     // Speak response
     speak(fullResponse);
-  }, [provider, activeId, create, addMessage, getActive, profile, searchKnowledge, speak]);
+  }, [provider, create, addMessage, getActive, profile, searchKnowledge, speak]);
 
   const handleMicToggle = useCallback(() => {
     const voiceStatus = useVoiceStore.getState().status;
