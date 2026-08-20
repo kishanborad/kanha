@@ -15,7 +15,7 @@ import type { Message, SearchResult } from '../../../types';
 export default function AssistantApp() {
   const provider = useProvider();
   const { startListening, stopListening, speak, cancelSpeech } = useVoice();
-  const { activeId, create, addMessage, getActive, load, loaded } = useConversationStore();
+  const { create, addMessage, getActive, load, loaded } = useConversationStore();
   const { profile, searchKnowledge } = useMemoryStore();
   const [streaming, setStreaming] = useState(false);
   const [streamText, setStreamText] = useState('');
