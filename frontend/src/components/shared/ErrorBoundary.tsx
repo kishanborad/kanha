@@ -1,8 +1,16 @@
 // frontend/src/components/shared/ErrorBoundary.tsx
 import { Component, type ReactNode, type ErrorInfo } from 'react';
+import { addToast } from '../../stores/toastStore';
 
-interface Props { children: ReactNode }
-interface State { hasError: boolean; error: Error | null }
+interface Props {
+  children: ReactNode;
+  onError?: (error: Error, info: ErrorInfo) => void;
+}
+
+interface State {
+  hasError: boolean;
+  error: Error | null;
+}
 
 export default class ErrorBoundary extends Component<Props, State> {
   state: State = { hasError: false, error: null };
@@ -13,6 +21,12 @@ export default class ErrorBoundary extends Component<Props, State> {
 
   componentDidCatch(error: Error, info: ErrorInfo) {
     console.error('[ZARVIS ErrorBoundary]', error, info.componentStack);
+
+    // Notify via toast
+    addToast(`Application error: ${error.message}`, 'error', 7000);
+
+    // Propagate to caller if provided
+    this.props.onError?.(error, info);
   }
 
   render() {
