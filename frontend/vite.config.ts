@@ -1,15 +1,10 @@
-import { defineConfig, loadEnv } from 'vite';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-const __dir = dirname(fileURLToPath(import.meta.url));
+declare const process: { env: Record<string, string | undefined> };
 
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, __dir, '');
-  return {
-    plugins: [react()],
-    base: env.VITE_BASE || '/kanha/',
-    build: { sourcemap: false },
-  };
+export default defineConfig({
+  plugins: [react()],
+  base: process.env.VITE_BASE || '/kanha/',
+  build: { sourcemap: false },
 });
