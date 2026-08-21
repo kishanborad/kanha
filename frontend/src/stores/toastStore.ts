@@ -18,7 +18,7 @@ interface ToastState {
 
 const MAX_TOASTS = 5;
 
-export const useToastStore = create<ToastState>((set, get) => ({
+export const useToastStore = create<ToastState>((set) => ({
   toasts: [],
 
   addToast: (message, type = 'info', duration = 5000) => {
