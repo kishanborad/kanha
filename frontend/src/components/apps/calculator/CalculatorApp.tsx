@@ -140,7 +140,6 @@ export default function CalculatorApp() {
   const MAX_HISTORY = 10;
 
   const handleDigit = (d: string) => {
-    setJustEvaled(false);
     if (justEvaled) {
       setExpression(d);
       setDisplay(d);

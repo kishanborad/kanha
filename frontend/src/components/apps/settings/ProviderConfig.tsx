@@ -150,7 +150,7 @@ function ProviderRow({ providerId, name, requiresProxy, isActive, onSetActive }:
 
       {requiresProxy && (
         <p className="text-[10px] text-z-dimmed mb-2">
-          Requires a local proxy. Set up with the proxy server (Task 14).
+          Requires a local proxy. See README for setup instructions.
         </p>
       )}
 

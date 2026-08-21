@@ -1,6 +1,6 @@
 // frontend/src/components/apps/settings/MemoryConfig.tsx
 // Data management tab: export, import, clear, storage usage, cleanup days
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { useSettingsStore } from '../../../stores/settingsStore';
 import { useMemoryStore } from '../../../stores/memoryStore';
 import { useConversationStore } from '../../../stores/conversationStore';
@@ -11,8 +11,7 @@ type CleanupDays = 30 | 90 | 180 | 0;
 function StorageMeter() {
   const [usage, setUsage] = useState<{ used: number; quota: number } | null>(null);
 
-  // Use storage API if available
-  useState(() => {
+  useEffect(() => {
     if (navigator.storage?.estimate) {
       navigator.storage.estimate().then(est => {
         if (est.usage !== undefined && est.quota !== undefined) {
@@ -20,7 +19,7 @@ function StorageMeter() {
         }
       });
     }
-  });
+  }, []);
 
   if (!usage) {
     return <p className="text-[11px] text-z-dimmed">Storage usage unavailable in this browser.</p>;
