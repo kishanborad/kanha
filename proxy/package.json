@@ -1,0 +1,21 @@
+{
+  "name": "kanha-proxy",
+  "version": "1.0.0",
+  "description": "Local proxy server for Kanha — routes Ollama, Anthropic, and HuggingFace requests with SSE streaming",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/index.js",
+    "dev": "npx tsx src/index.ts"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}

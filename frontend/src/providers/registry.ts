@@ -3,6 +3,9 @@ import { createOpenAIProvider } from './openai';
 import { createGroqProvider } from './groq';
 import { createOpenRouterProvider } from './openrouter';
 import { createGoogleProvider } from './google';
+import { createAnthropicProvider } from './anthropic';
+import { createOllamaProvider } from './ollama';
+import { createHuggingFaceProvider } from './huggingface';
 
 type ProviderFactory = (apiKey: string) => LLMProvider;
 
@@ -12,6 +15,9 @@ const FACTORIES = new Map<string, ProviderFactory>([
   ['groq', createGroqProvider],
   ['openrouter', createOpenRouterProvider],
   ['google', createGoogleProvider],
+  ['anthropic', createAnthropicProvider],
+  ['ollama', createOllamaProvider],
+  ['huggingface', createHuggingFaceProvider],
 ]);
 
 export function getProvider(id: string, apiKey: string): LLMProvider | null {

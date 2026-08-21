@@ -1,0 +1,10 @@
+services:
+  proxy:
+    build: ./proxy
+    ports:
+      - "3001:3001"
+    environment:
+      - OLLAMA_HOST=http://host.docker.internal:11434
+      - HF_TOKEN=${HF_TOKEN:-}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
