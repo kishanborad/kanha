@@ -5,6 +5,9 @@ import { useMemoryStore } from './stores/memoryStore';
 import BootSequence from './components/desktop/BootSequence';
 import Desktop from './components/desktop/Desktop';
 import WindowManager from './components/window/WindowManager';
+import Toast from './components/shared/Toast';
+import OfflineBanner from './components/shared/OfflineBanner';
+import ResponsiveDisclaimer from './components/shared/ResponsiveDisclaimer';
 import { APP_REGISTRY, DOCK_APPS } from './registry/apps';
 
 export default function App() {
@@ -29,10 +32,13 @@ export default function App() {
 
   return (
     <>
+      <ResponsiveDisclaimer />
+      <OfflineBanner />
       {showBoot && <BootSequence onComplete={handleBootComplete} />}
       <Desktop apps={DOCK_APPS}>
         <WindowManager registry={APP_REGISTRY} />
       </Desktop>
+      <Toast />
     </>
   );
 }
